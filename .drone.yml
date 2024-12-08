@@ -16,7 +16,7 @@ steps:
       host: 74.48.213.218
       username: root
       key:
-        from_secret: ssh_passwd
+        from_secret: "baibing123"
       port: 22
       source:
         - "build/*"     # 指向构建输出的文件
