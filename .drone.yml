@@ -10,7 +10,8 @@ steps:
       - npm run build
 
   - name: deploy
-    image: appleboy/scp-action
+    pull: if-not-exists
+    image: appleboy/drone-ssh
     settings:
       host: 74.48.213.218
       username: root
