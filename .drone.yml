@@ -19,5 +19,5 @@ steps:
         from_secret: ssh_passwd
       port: 22
       source:
-        - "build/*"     # 指向构建输出的文件
+        - "/drone/src/*"     # 指向构建输出的文件
       target: "/akmonitor/front"  # 目标服务器路径
