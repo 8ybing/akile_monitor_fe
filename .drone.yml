@@ -15,7 +15,7 @@ steps:
     settings:
       host: 74.48.213.218
       username: root
-      key:
+      password:
         from_secret: ssh_passwd
       port: 22
       source:
