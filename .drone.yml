@@ -9,12 +9,13 @@ volumes:
 
 steps:
   - name: build
-    image: node:14
+    image: node:22
     commands:
       - npm install
       - npm run build
       - ls && pwd
-      - cp -r dist /drone/cache
+      - cp -r  /drone/cache
+      - cd /drone/src/src
 
   - name: deploy
     pull: if-not-exists
