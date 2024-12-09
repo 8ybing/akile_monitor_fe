@@ -13,9 +13,7 @@ steps:
     commands:
       - npm install
       - npm run build
-      - ls && pwd
-      - cp -r  /drone/cache
-      - cd /drone/src/src
+      - cp -r ./dist /drone/cache/
 
   - name: deploy
     pull: if-not-exists
@@ -28,7 +26,7 @@ steps:
         from_secret: ssh_passwd
       port: 22
       script: |
-        rm -rf /drone/cache/*
+        rm -rf /drone/cache/dist
         cp -r /drone/cache/ .
 #      source:
 #        - "./dist"     # 指向构建输出的文件
