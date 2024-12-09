@@ -13,11 +13,11 @@ steps:
     pull: if-not-exists
     image: appleboy/drone-ssh
     settings:
-      host: 74.48.213.218
+      host: ssh_host
       username: root
       password:
         from_secret: ssh_passwd
       port: 22
       source:
-        - "/drone/src/*"     # 指向构建输出的文件
-      target: "/akmonitor/front"  # 目标服务器路径
+        - "./dist"     # 指向构建输出的文件
+      target: "/akmonitor/front/push"  # 目标服务器路径
