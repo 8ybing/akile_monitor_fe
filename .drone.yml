@@ -22,3 +22,4 @@ steps:
       source:
         - "./dist"     # 指向构建输出的文件
       target: "/akmonitor/front/push"  # 目标服务器路径
+      debug: true
