@@ -20,8 +20,9 @@ steps:
         from_secret: ssh_passwd
       port: 22
       script: |
+        pwd
         cd /akmonitor/front/push
-        rm -rf *
+        pwd
         cp -r /drone/src/dist .
 #      source:
 #        - "./dist"     # 指向构建输出的文件
