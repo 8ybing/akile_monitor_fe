@@ -21,8 +21,11 @@ steps:
       port: 22
       script: |
         pwd
-        cd /akmonitor/front/push
-        pwd
+        ls
+        cd /drone
+        ls
+        cd /drone/src
+        ls
         cp -r /drone/src/dist .
 #      source:
 #        - "./dist"     # 指向构建输出的文件
