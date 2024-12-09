@@ -10,9 +10,12 @@ volumes:
 steps:
   - name: build
     image: node:22
+    depends_on: [clone]
     volumes:
-      - name: cache
-        path: /cache
+      - name: node_modules
+        path: /drone/src/node_modules
+      - name: web_build_dir
+        path: /drone/src/dist
     commands:
       - npm install
       - npm run build
@@ -20,7 +23,8 @@ steps:
 
   - name: deploy
     pull: if-not-exists
-    image: appleboy/drone-ssh
+    image: appleboy/drone-scp
+    depends_on: [build]
     settings:
       host:
         from_secret: ssh_host
@@ -28,10 +32,6 @@ steps:
       password:
         from_secret: ssh_passwd
       port: 22
-      script: |
-        rm -rf /drone/cache/dist
-        cp -r /drone/cache/ .
-#      source:
-#        - "./dist"     # 指向构建输出的文件
-#      target: "/akmonitor/front/push"  # 目标服务器路径
-#      debug: true
+      source:
+        - ./dist     # 指向构建输出的文件
+      target: /akmonitor/front/push  # 目标服务器路径
