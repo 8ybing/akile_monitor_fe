@@ -2,12 +2,19 @@ kind: pipeline
 type: docker
 name: default
 
+volumes:
+  - name: cache
+    host:
+      path: /drone/cache
+
 steps:
   - name: build
     image: node:14
     commands:
       - npm install
       - npm run build
+      - ls && pwd
+      - cp -r dist /drone/cache
 
   - name: deploy
     pull: if-not-exists
@@ -20,13 +27,8 @@ steps:
         from_secret: ssh_passwd
       port: 22
       script: |
-        pwd
-        ls
-        cd /drone
-        ls
-        cd /drone/src
-        ls
-        cp -r /drone/src/dist .
+        rm -rf /drone/cache/*
+        cp -r /drone/cache/ .
 #      source:
 #        - "./dist"     # 指向构建输出的文件
 #      target: "/akmonitor/front/push"  # 目标服务器路径
