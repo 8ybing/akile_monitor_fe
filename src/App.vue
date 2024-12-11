@@ -404,6 +404,10 @@ provide('handleChangeType', handleChangeType)
                   <div class="value">{{item.Host.Virtualization || '-'}}</div>
                 </div>
                 <div class="detail-item">
+                  <div class="name">IP</div>
+                  <div class="value">{{item.Host.IP_Address || '-'}}</div>
+                </div>
+                <div class="detail-item">
                   <div class="name">CPU</div>
                   <div class="value">{{item.Host.CPU.join(',')}}</div>
                 </div>
